@@ -1,0 +1,117 @@
+#root {
+  --primary-color: #fff;
+  --text-color: #1b263b;
+  display: grid;
+  grid-template-columns: 1.3fr 3fr;
+  grid-template-areas: "aside main";
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.aside__container {
+  grid-area: aside;
+  display: grid;
+  gap: 1rem;
+  color: var(--text-color);
+}
+
+.container__form {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.form__title {
+  margin: 0;
+}
+
+.form__label {
+  display: flex;
+  flex-wrap: wrap;
+  margin-block-start: 1rem;
+}
+
+.form__input,
+.form__textarea {
+  inline-size: 100%;
+  padding: 0.5rem;
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 5px;
+}
+
+.form__textarea {
+  resize: none;
+}
+
+.main__container {
+  grid-area: main;
+  color: var(--text-color);
+}
+
+.container__content {
+  padding: 2.5rem;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.content__title {
+  margin: 0;
+  margin-block-start: 1.5rem;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.content__info {
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid var(--text-color);
+  padding-bottom: 0.3rem;
+}
+
+.content__description {
+  padding: 0 0.5rem;
+}
+
+.content__experience, .content__education  {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-block-end: 0.8rem;
+}
+
+.experience__title, .education__title{
+  inline-size: 100%;
+  margin: 0;
+  border-bottom: 2px solid var(--text-color);
+}
+
+.experience__job, .education__item {
+  text-align: start;
+}
+
+.experience__location, .education__location {
+  text-align: end;
+}
+
+.experience__location span,
+.experience__job span,
+.education__item span,
+.education__location span {
+  display: block;
+}
+
+.experience__location span:first-child,
+.education__location span:first-child {
+  font-weight: bold;
+}
+
+.experience__list {
+  max-inline-size: 66ch;
+  margin: 0;
+}
+
+.skills__title {
+  margin: 0;
+  border-bottom: 2px solid var(--text-color);
+}
