@@ -1,0 +1,18 @@
+export const initialDataPerson = {
+    fullname: "John Doe",
+    address: "City, Country",
+    phone: "1234567890",
+    email: "johndoe@example.com",
+    aboutMe: "Lorem ipsum dolor sit amet.",
+    company: "Company Name",
+    job: "Job Title",
+    companyAddress: "City, Country",
+    experienceStart: "Start Date",
+    experienceEnd: "End Date",
+    description: "",
+    schoolName: "School Name",
+    degree: "Degree",
+    schoolAddress: "City, Country",
+    degreeDate: "Degree Date",
+    skill: "Skill",
+}
