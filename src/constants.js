@@ -1,18 +1,36 @@
-export const initialDataPerson = {
-    fullname: "John Doe",
-    address: "City, Country",
-    phone: "1234567890",
-    email: "johndoe@example.com",
-    aboutMe: "Lorem ipsum dolor sit amet.",
+export const initialPersonDetails = {
+  fullname: "John Doe",
+  address: "City, Country",
+  phone: "1234567890",
+  email: "johndoe@example.com",
+  aboutMe: "Lorem ipsum dolor sit amet.",
+};
+
+export const initialExperience = [
+  {
+    id: 0,
     company: "Company Name",
-    job: "Job Title",
-    companyAddress: "City, Country",
-    experienceStart: "Start Date",
-    experienceEnd: "End Date",
+    jobTitle: "Job Title",
+    address: "City, Country",
+    startDate: "",
+    endDate: "",
     description: "",
-    schoolName: "School Name",
+  },
+];
+
+export const initialEducation = [
+  {
+    id: 0,
+    school: "School Name",
     degree: "Degree",
-    schoolAddress: "City, Country",
-    degreeDate: "Degree Date",
-    skill: "Skill",
-}
+    address: "City, Country",
+    endDate: "",
+  },
+];
+
+export const initialSkills = [
+  {
+    id: 0,
+    skill: "Skill Name",
+  },
+];

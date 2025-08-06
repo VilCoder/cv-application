@@ -1,4 +1,27 @@
-export function Content({ personData}) {
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+
+export function Content({ personData }) {
+  // const experienceStartDate = personData.experience[0].start
+  //   ? format(new Date(personData.experience[0].start), "MMMM yyyy", {
+  //       locale: es,
+  //     })
+  //   : "Start Date";
+
+  // const experienceEndDate = personData.experience[0].end
+  //   ? format(new Date(personData.experience[0].end), "MMMM yyyy", {
+  //       locale: es,
+  //     })
+  //   : "End Date";
+
+  // const formattedDegreeDate = personData.education[0].date
+  //   ? format(new Date(personData.education[0].date), "MMMM yyyy", {
+  //       locale: es,
+  //     })
+  //   : "Degree Date";
+
+  // console.log(personData.experience[0].description);
+    
   return (
     <article className="container__content">
       <h1 className="content__title">{personData.fullname}</h1>
@@ -18,35 +41,45 @@ export function Content({ personData}) {
       <section className="content__experience">
         <h2 className="experience__title">EXPERIENCIA PROFESIONAL</h2>
         <p className="experience__job">
-          <span><strong>{personData.company}</strong></span>
-          <span>{personData.job}</span>
+          <span>
+            <strong>{}</strong>
+          </span>
+          <span>{}</span>
         </p>
         <p className="experience__location">
-          <span>{personData.companyAddress}</span>
-          <span>{personData.experienceStart}-{personData.experienceEnd}</span>
+          <span>{}</span>
+          <span>
+            {}-{}
+          </span>
         </p>
         <ul className="experience__list">
-          <li>Desarrollé y mantuve aplicaciones web utilizando React y Node.js.</li>
+          <li>
+            Desarrollé y mantuve aplicaciones web utilizando React y Node.js.
+          </li>
         </ul>
       </section>
 
       <section className="content__education">
         <h2 className="education__title">EDUCACIÓN</h2>
         <p className="education__item">
-          <span><strong>{personData.schoolName}</strong></span>
-          <span>{personData.degree}</span>
+          <span>
+            <strong>{}</strong>
+          </span>
+          <span>{}</span>
         </p>
         <p className="education__location">
-          <span>{personData.schoolAddress}</span>
-          <span>Noviembre 2023</span>
+          <span>{}</span>
+          <span>{}</span>
         </p>
         <p className="education__item">
-          <span><strong>{personData.schoolName}</strong></span>
-          <span>{personData.degree}</span>
+          <span>
+            <strong>{}</strong>
+          </span>
+          <span>{}</span>
         </p>
         <p className="education__location">
-          <span>{personData.schoolAddress}</span>
-          <span>Diciembre 2021</span>
+          <span>{}</span>
+          <span>{}</span>
         </p>
       </section>
 

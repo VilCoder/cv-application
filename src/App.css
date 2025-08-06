@@ -37,19 +37,43 @@ svg {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  inset-block-start: 1rem;
-  inset-inline-end: 1rem;
   background-color: var(--secondary-color);
   border: none;
   border-radius: 7px;
   cursor: pointer;
 }
 
+.form__button--toggle {
+  position: absolute;
+  inset-block-start: 1rem;
+  inset-inline-end: 1rem;
+}
+
+.form__button--save {
+  inline-size: 100%;
+  font-size: 1.1rem;
+  margin-block-start: 1rem;
+  padding-block: 0.5rem;
+  background-color: #56647C;
+  color: var(--primary-color);
+}
+
 .form__label {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   margin-block-start: 1rem;
+}
+
+.label__button {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-end: -0.2rem;
+  font-size: 2rem;
+  background-color: transparent;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
 }
 
 .form__input,
@@ -65,12 +89,26 @@ svg {
   resize: none;
 }
 
+.form__list {
+  padding: 0;
+  padding-inline-start: 0.3rem;
+}
+
+.form__list-item {
+  display: inline-block;
+  max-inline-size: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;  
+}
+
 .main__container {
   grid-area: main;
   color: var(--text-color);
 }
 
 .container__content {
+  border: 1px solid var(--text-color);
   padding: 2.5rem;
   background-color: var(--primary-color);
   border-radius: 5px;
@@ -124,11 +162,6 @@ svg {
   text-align: start;
 }
 
-.experience__location,
-.education__location {
-  text-align: end;
-}
-
 .experience__location span,
 .experience__job span,
 .education__item span,
@@ -136,9 +169,22 @@ svg {
   display: block;
 }
 
+.experience__location,
+.education__location {
+  text-align: end;
+}
+
 .experience__location span:first-child,
 .education__location span:first-child {
   font-weight: bold;
+  text-transform: capitalize;
+}
+
+.experience__location span:last-child,
+.education__location span:last-child,
+.experience__job span:last-child,
+.education__item span:last-child {
+  text-transform: capitalize;
 }
 
 .education__item {

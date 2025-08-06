@@ -1,18 +1,18 @@
 import { useState } from "react";
 
 export function Form({ title, children }) {
-  const [showIcon, setShowIcon] = useState(false);
+  const [state, setState] = useState(false);
   const handleToggle = () => {
-    setShowIcon(!showIcon);
+    setState(!state);
   };
 
   return (
     <section className="container__form">
       <h2 className="form__title">{title}</h2>
 
-      <button type="button" className="form__button" onClick={handleToggle}>
+      <button type="button" className="form__button form__button--toggle" onClick={handleToggle}>
         <svg
-          style={{ display: showIcon ? "block" : "none" }}
+          style={{ display: state ? "block" : "none" }}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -20,7 +20,7 @@ export function Form({ title, children }) {
         </svg>
 
         <svg
-          style={{ display: showIcon ? "none" : "block" }}
+          style={{ display: state ? "none" : "block" }}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -29,7 +29,7 @@ export function Form({ title, children }) {
       </button>
 
       <form
-        style={{ display: showIcon ? "block" : "none" }}
+        style={{ display: state ? "block" : "none" }}
         className="form"
         onSubmit={(e) => e.preventDefault()}
       >
