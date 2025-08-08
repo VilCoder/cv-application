@@ -6,31 +6,25 @@ export const initialPersonDetails = {
   aboutMe: "Lorem ipsum dolor sit amet.",
 };
 
-export const initialExperience = [
-  {
-    id: 0,
-    company: "Company Name",
-    jobTitle: "Job Title",
-    address: "City, Country",
-    startDate: "",
-    endDate: "",
-    description: "",
-  },
-];
+export const initialExperience = {
+  id: "",
+  company: "",
+  job: "",
+  address: "",
+  startDate: "",
+  endDate: "",
+  description: "",
+};
 
-export const initialEducation = [
-  {
-    id: 0,
-    school: "School Name",
-    degree: "Degree",
-    address: "City, Country",
-    endDate: "",
-  },
-];
+export const initialEducation = {
+  id: "",
+  school: "",
+  degree: "",
+  address: "",
+  degreeDate: "",
+};
 
-export const initialSkills = [
-  {
-    id: 0,
-    skill: "Skill Name",
-  },
-];
+export const initialSkill = {
+  id: "",
+  skill: "",
+};

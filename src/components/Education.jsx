@@ -1,20 +1,49 @@
+import { useState } from "react";
 import { Form } from "./Form";
+import { initialEducation } from "../constants";
 
-export function Education() {
+let nextId = 0;
+
+export function Education({ educationData, onAdd, onRemove }) {
+  const [education, setEducation] = useState(initialEducation);
+
+  const handleChange = (e) => {
+    setEducation({
+      ...education,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleClearFields = () => {
+    setEducation({
+      school: "",
+      degree: "",
+      address: "",
+      degreeDate: "",
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAdd({ ...education, id: nextId++ });
+    handleClearFields();
+  };
+
   return (
-    <Form title="Education">
-      <label className="form__label" htmlFor="schoolName">
+    <Form title="Educación" onSubmit={handleSubmit}>
+      <label className="form__label" htmlFor="school">
         School Name *
         <input
           className="form__input"
           type="text"
-          id="schoolName"
-          name="schoolName"
+          id="school"
+          name="school"
+          value={education.school}
           autoComplete="organization"
           maxLength={40}
           required
           placeholder="MINISTERIO TIC"
-          // onChange={handleChange}
+          onChange={handleChange}
         />
       </label>
       <label className="form__label" htmlFor="degree">
@@ -24,25 +53,27 @@ export function Education() {
           type="text"
           id="degree"
           name="degree"
+          value={education.degree}
           autoComplete="off"
           required
           maxLength={60}
           placeholder="Desarrollo de Software y de Aplicaciones Web"
-          // onChange={handleChange}
+          onChange={handleChange}
         />
       </label>
-      <label className="form__label" htmlFor="schoolAddress">
+      <label className="form__label" htmlFor="address">
         Location *
         <input
           className="form__input"
           type="text"
-          id="schoolAddress"
-          name="schoolAddress"
+          id="address"
+          name="address"
+          value={education.address}
           autoComplete="address"
           maxLength={60}
           required
           placeholder="City, Country"
-          // onChange={handleChange}
+          onChange={handleChange}
         />
       </label>
       <label className="form__label" htmlFor="degreeDate">
@@ -52,15 +83,30 @@ export function Education() {
           type="date"
           id="degreeDate"
           name="degreeDate"
+          value={education.degreeDate}
           autoComplete="off"
           pattern="^\d{2}-\d{2}-\d{4}$"
           required
-          // onChange={handleChange}
+          onChange={handleChange}
         />
       </label>
       <button type="submit" className="form__button form__button--save">
         Save
       </button>
+
+      {educationData.length > 0 && (
+        <>
+          <h3 className="education__list--title">Registered education</h3>
+          <ul className="education__list--ul">
+            {educationData.map((ed) => (
+              <li className="education__list--item" key={ed.id}>
+                <span>{ed.school}</span>{" "}
+                <button type="button" onClick={() => onRemove(ed.id)}>Eliminar</button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </Form>
   );
 }

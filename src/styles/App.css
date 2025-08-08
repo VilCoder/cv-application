@@ -1,11 +1,22 @@
+/* =============== GENERAL STYLES =============== */
+html,
+body,
+#root {
+  block-size: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 #root {
   --primary-color: #fff;
   --text-color: #1b263b;
+  --button-color: #56647c;
   display: grid;
   grid-template-columns: 1.3fr 3fr;
   grid-template-areas: "aside main";
   gap: 1rem;
   padding: 1rem;
+  overflow: hidden;
 }
 
 svg {
@@ -14,18 +25,53 @@ svg {
   fill: var(--text-color);
 }
 
+/* =============== SCROLLBAR =============== */
+.aside__container::-webkit-scrollbar,
+.main__container::-webkit-scrollbar {
+  width: 18px;
+}
+
+.aside__container::-webkit-scrollbar-track,
+.main__container::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.aside__container::-webkit-scrollbar-thumb,
+.main__container::-webkit-scrollbar-thumb {
+  background: #80817D;
+  border-radius: 8px;
+  border: 6px solid var(--secondary-color);
+}
+
+.aside__container::-webkit-scrollbar-thumb:hover,
+.main__container::-webkit-scrollbar-thumb:hover {
+  background: #636363;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .aside__container,
+  .main__container {
+    scrollbar-color: transparent var(--secondary-color);
+  }
+}
+
+/* =============== ASIDE =============== */
 .aside__container {
   grid-area: aside;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  block-size: calc(100% - 2rem);
+  border-radius: 10px 0 0 10px;
   color: var(--text-color);
+  overflow: auto;
 }
 
 .container__form {
   position: relative;
   background-color: var(--primary-color);
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
   padding: 1rem;
 }
 
@@ -54,8 +100,12 @@ svg {
   font-size: 1.1rem;
   margin-block-start: 1rem;
   padding-block: 0.5rem;
-  background-color: #56647C;
+  background-color: var(--button-color);
   color: var(--primary-color);
+}
+
+.form__button--save:hover {
+  background-color: #73819a;
 }
 
 .form__label {
@@ -89,29 +139,42 @@ svg {
   resize: none;
 }
 
-.form__list {
-  padding: 0;
-  padding-inline-start: 0.3rem;
+.education__list--title {
+  font-size: 1rem;
+  margin-block-start: 2rem;
 }
 
-.form__list-item {
-  display: inline-block;
-  max-inline-size: 250px;
+.education__list--item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.education__list--item span {
+  max-inline-size: 170px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;  
+  text-overflow: ellipsis;
+  display: inline-block;
 }
 
+.education__list--ul {
+  padding: 0;
+}
+
+/* =============== MAIN =============== */
 .main__container {
   grid-area: main;
+  block-size: calc(100% - 2rem);
   color: var(--text-color);
+  overflow: auto;
 }
 
 .container__content {
-  border: 1px solid var(--text-color);
   padding: 2.5rem;
   background-color: var(--primary-color);
-  border-radius: 5px;
 }
 
 .content__title {
@@ -124,7 +187,9 @@ svg {
 
 .content__info {
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   border-bottom: 2px solid var(--text-color);
   padding-bottom: 0.3rem;
 }
@@ -133,15 +198,28 @@ svg {
   text-transform: capitalize;
 }
 
-.content__description {
+.info__separator {
+  inline-size: 0.3rem;
+  block-size: 0.3rem;
+  border-radius: 50%;
+  background-color: var(--text-color);
+}
+
+.content__description,
+.experience__item,
+.education__item {
   padding: 0 0.5rem;
+}
+
+.experience__item,
+.education__item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .content__experience,
 .content__education {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   margin-block-end: 0.8rem;
 }
 
@@ -153,18 +231,18 @@ svg {
 }
 
 .experience__job span:first-child,
-.education__item span:first-child {
+.education__info span:first-child {
   text-transform: uppercase;
 }
 
 .experience__job,
-.education__item {
+.education__info {
   text-align: start;
 }
 
 .experience__location span,
 .experience__job span,
-.education__item span,
+.education__info span,
 .education__location span {
   display: block;
 }
@@ -183,11 +261,11 @@ svg {
 .experience__location span:last-child,
 .education__location span:last-child,
 .experience__job span:last-child,
-.education__item span:last-child {
+.education__info span:last-child {
   text-transform: capitalize;
 }
 
-.education__item {
+.education__info {
   flex-basis: 50%;
 }
 

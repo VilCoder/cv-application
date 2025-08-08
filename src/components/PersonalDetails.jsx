@@ -2,7 +2,7 @@ import { Form } from "./Form";
 
 export function PersonalDetails({ handleChange }) {
   return (
-    <Form title="Personal Details">
+    <Form title="Información Personal" initialState={true}>
       <label className="form__label" htmlFor="fullname">
         Full Name *
         <input

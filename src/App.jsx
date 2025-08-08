@@ -1,13 +1,7 @@
 import { useState } from "react";
-// import { useImmer } from "use-immer";
-import "./App.css";
+import "./styles/App.css";
 
-import {
-  initialPersonDetails,
-  initialExperience,
-  initialEducation,
-  initialSkills,
-} from "./constants";
+import { initialPersonDetails } from "./constants";
 import { Content } from "./components/Content";
 import { PersonalDetails } from "./components/PersonalDetails";
 import { Experience } from "./components/Experience";
@@ -15,14 +9,14 @@ import { Education } from "./components/Education";
 import { Skills } from "./components/Skills";
 
 function App() {
-  const [personalDetails, setPersonalDetails] = useState(initialPersonDetails);
-  const [experienceList, setExperienceList] = useState(initialExperience);
-  const [educationList, setEducationList] = useState(initialEducation);
-  const [skillList, setSkillList] = useState(initialSkills);
+  const [person, setPerson] = useState(initialPersonDetails);
+  const [experienceList, setExperienceList] = useState([]);
+  const [educationList, setEducationList] = useState([]);
+  const [skillList, setSkillList] = useState([]);
 
-  const handlePersonalDetailsChange = (e) => {
-    setPersonalDetails({
-      ...personalDetails,
+  const handleChange = (e) => {
+    setPerson({
+      ...person,
       [e.target.name]: e.target.value,
     });
   };
@@ -30,40 +24,69 @@ function App() {
   const handleAddExperience = ({
     id,
     company,
-    jobTitle,
+    job,
     address,
     startDate,
     endDate,
     description,
   }) => {
     setExperienceList([
-      { id, company, jobTitle, address, startDate, endDate, description },
+      { id, company, job, address, startDate, endDate, description },
       ...experienceList,
     ]);
   };
 
-  const handleAddEducation = ({ id, school, degree, address, endDate }) => {
+  const handleRemoveExperience = (experienceId) => {
+    setExperienceList(experienceList.filter((ex) => ex.id !== experienceId));
+  };
+
+  const handleAddEducation = ({ id, school, degree, address, degreeDate }) => {
     setEducationList([
+      { id, school, degree, address, degreeDate },
       ...educationList,
-      { id, school, degree, address, endDate },
     ]);
   };
 
+  const handleRemoveEducation = (educationId) => {
+    setEducationList(educationList.filter((ed) => ed.id !== educationId));
+  };
+
   const handleAddSkill = ({ id, skill }) => {
-    setSkillList([...skillList, { id, skill }]);
+    setSkillList([{ id, skill }, ...skillList]);
+  };
+
+  const handleRemoveSkill = (skillId) => {
+    setSkillList(skillList.filter((sk) => sk.id !== skillId));
   };
 
   return (
     <>
       <aside className="aside__container">
-        <PersonalDetails handleChange={handlePersonalDetailsChange} />
-        <Experience onAdd={handleAddExperience} />
-        <Education onAdd={handleAddEducation} />
-        <Skills onAdd={handleAddSkill} />
+        <PersonalDetails handleChange={handleChange} />
+        <Experience
+          experienceData={experienceList}
+          onAdd={handleAddExperience}
+          onRemove={handleRemoveExperience}
+        />
+        <Education
+          educationData={educationList}
+          onAdd={handleAddEducation}
+          onRemove={handleRemoveEducation}
+        />
+        <Skills
+          skillData={skillList}
+          onAdd={handleAddSkill}
+          onRemove={handleRemoveSkill}
+        />
       </aside>
 
       <main className="main__container">
-        <Content personData={personalDetails} />
+        <Content
+          personData={person}
+          experienceData={experienceList}
+          educationData={educationList}
+          skillData={skillList}
+        />
       </main>
     </>
   );

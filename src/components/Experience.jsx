@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { Form } from "./Form";
+import { initialExperience } from "../constants";
 
-export function Experience({ onAdd }) {
-  const [experience, setExperience] = useState({
-    company: "",
-    jobTitle: "",
-    address: "",
-    startDate: "",
-    endDate: "",
-    description: "",
-  });
-  
+let nextId = 0;
+
+export function Experience({ experienceData, onAdd, onRemove }) {
+  const [experience, setExperience] = useState(initialExperience);
+
   const handleChange = (e) => {
     setExperience({
       ...experience,
@@ -18,8 +14,25 @@ export function Experience({ onAdd }) {
     });
   };
 
+  const handleClearFields = () => {
+    setExperience({
+      company: "",
+      job: "",
+      address: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAdd({ ...experience, id: nextId++ });
+    handleClearFields();
+  };
+
   return (
-    <Form title="Experience">
+    <Form title="Experiencia Profesional" onSubmit={handleSubmit}>
       <label className="form__label" htmlFor="company">
         Company Name *
         <input
@@ -27,6 +40,7 @@ export function Experience({ onAdd }) {
           type="text"
           id="company"
           name="company"
+          value={experience.company}
           autoComplete="organization"
           maxLength={60}
           pattern="^[^0-9]+$"
@@ -42,21 +56,22 @@ export function Experience({ onAdd }) {
           type="text"
           id="job"
           name="job"
+          value={experience.job}
           autoComplete="organization-title"
           maxLength={60}
-          pattern="^[A-Za-z]+$"
           placeholder="Software Developer"
           required
           onChange={handleChange}
         />
       </label>
-      <label className="form__label" htmlFor="companyAddress">
+      <label className="form__label" htmlFor="address">
         Location *
         <input
           className="form__input"
           type="tel"
-          id="companyAddress"
-          name="companyAddress"
+          id="address"
+          name="address"
+          value={experience.address}
           autoComplete="address"
           maxLength={60}
           required
@@ -64,26 +79,28 @@ export function Experience({ onAdd }) {
           onChange={handleChange}
         />
       </label>
-      <label className="form__label" htmlFor="experienceStart">
+      <label className="form__label" htmlFor="startDate">
         Start Date *
         <input
           className="form__input"
           type="date"
-          id="experienceStart"
-          name="experienceStart"
+          id="startDate"
+          name="startDate"
+          value={experience.startDate}
           autoComplete="off"
           pattern="^\d{2}-\d{2}-\d{4}$"
           required
           onChange={handleChange}
         />
       </label>
-      <label className="form__label" htmlFor="experienceEnd">
+      <label className="form__label" htmlFor="endDate">
         End Date *
         <input
           className="form__input"
           type="date"
-          id="experienceEnd"
-          name="experienceEnd"
+          id="endDate"
+          name="endDate"
+          value={experience.endDate}
           autoComplete="off"
           pattern="^\d{2}-\d{2}-\d{4}$"
           required
@@ -96,7 +113,7 @@ export function Experience({ onAdd }) {
           className="form__textarea"
           name="description"
           id="description"
-          // value={experience}
+          value={experience.description}
           autoComplete="off"
           rows={3}
           onInput={(e) => {
@@ -107,18 +124,24 @@ export function Experience({ onAdd }) {
           placeholder="Describe your professional experience..."
           onChange={handleChange}
         ></textarea>
-        <button
-          type="button"
-          className="label__button"
-          // disabled={!experience}
-          onClick={() => onAdd(...experience)}
-        >
-          +
-        </button>
       </label>
       <button type="submit" className="form__button form__button--save">
         Save
       </button>
+
+      {experienceData.length > 0 && (
+        <>
+          <h3 className="education__list--title">Registered education</h3>
+          <ul className="education__list--ul">
+            {experienceData.map((ex) => (
+              <li className="education__list--item" key={ex.id}>
+                <span>{ex.company}</span>{" "}
+                <button type="button" onClick={() => onRemove(ex.id)}>Eliminar</button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </Form>
   );
 }

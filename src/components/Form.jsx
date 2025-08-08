@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-export function Form({ title, children }) {
-  const [state, setState] = useState(false);
+export function Form({ title, children, onSubmit, initialState = false }) {
+  const [state, setState] = useState(initialState);
+
   const handleToggle = () => {
     setState(!state);
   };
@@ -31,7 +32,7 @@ export function Form({ title, children }) {
       <form
         style={{ display: state ? "block" : "none" }}
         className="form"
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={onSubmit}
       >
         {children}
       </form>
