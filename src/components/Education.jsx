@@ -69,7 +69,7 @@ export function Education({ educationData, onAdd, onRemove }) {
           id="address"
           name="address"
           value={education.address}
-          autoComplete="address"
+          autoComplete="street-address"
           maxLength={60}
           required
           placeholder="City, Country"
@@ -96,12 +96,18 @@ export function Education({ educationData, onAdd, onRemove }) {
 
       {educationData.length > 0 && (
         <>
-          <h3 className="education__list--title">Registered education</h3>
+          <h3 className="education__list--title">Educación Registrada</h3>
           <ul className="education__list--ul">
             {educationData.map((ed) => (
               <li className="education__list--item" key={ed.id}>
                 <span>{ed.school}</span>{" "}
-                <button type="button" onClick={() => onRemove(ed.id)}>Eliminar</button>
+                <button
+                  className="item__remove"
+                  type="button"
+                  onClick={() => onRemove(ed.id)}
+                >
+                  Eliminar
+                </button>
               </li>
             ))}
           </ul>

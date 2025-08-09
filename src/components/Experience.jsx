@@ -57,7 +57,7 @@ export function Experience({ experienceData, onAdd, onRemove }) {
           id="job"
           name="job"
           value={experience.job}
-          autoComplete="organization-title"
+          autoComplete="job-title"
           maxLength={60}
           placeholder="Software Developer"
           required
@@ -72,7 +72,7 @@ export function Experience({ experienceData, onAdd, onRemove }) {
           id="address"
           name="address"
           value={experience.address}
-          autoComplete="address"
+          autoComplete="street-address"
           maxLength={60}
           required
           placeholder="City, Country"
@@ -131,12 +131,18 @@ export function Experience({ experienceData, onAdd, onRemove }) {
 
       {experienceData.length > 0 && (
         <>
-          <h3 className="education__list--title">Registered education</h3>
+          <h3 className="education__list--title">Experiencia Registrada</h3>
           <ul className="education__list--ul">
             {experienceData.map((ex) => (
               <li className="education__list--item" key={ex.id}>
                 <span>{ex.company}</span>{" "}
-                <button type="button" onClick={() => onRemove(ex.id)}>Eliminar</button>
+                <button
+                  className="item__remove"
+                  type="button"
+                  onClick={() => onRemove(ex.id)}
+                >
+                  Eliminar
+                </button>
               </li>
             ))}
           </ul>

@@ -25,7 +25,7 @@ export function PersonalDetails({ handleChange }) {
           type="text"
           id="address"
           name="address"
-          autoComplete="address"
+          autoComplete="street-address"
           maxLength={40}
           pattern="^[A-Za-z]+$"
           placeholder="City, Country"

@@ -38,7 +38,6 @@ export function Skills({ skillData, onAdd, onRemove }) {
           value={skill.skill}
           autoComplete="off"
           required
-          pattern="^[a-zA-Z\s]+$"
           placeholder="Enter your skill"
           onChange={handleChange}
         />
@@ -49,12 +48,12 @@ export function Skills({ skillData, onAdd, onRemove }) {
 
       {skillData.length > 0 && (
         <>
-          <h3 className="education__list--title">Registered education</h3>
+          <h3 className="education__list--title">Habilidad Resgistrada</h3>
           <ul className="education__list--ul">
             {skillData.map((sk) => (
               <li className="education__list--item" key={sk.id}>
                 <span>{sk.skill}</span>{" "}
-                <button type="button" onClick={() => onRemove(sk.id)}>
+                <button className="item__remove" type="button" onClick={() => onRemove(sk.id)}>
                   Eliminar
                 </button>
               </li>

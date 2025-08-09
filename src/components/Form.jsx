@@ -11,8 +11,14 @@ export function Form({ title, children, onSubmit, initialState = false }) {
     <section className="container__form">
       <h2 className="form__title">{title}</h2>
 
-      <button type="button" className="form__button form__button--toggle" onClick={handleToggle}>
+      <button
+        aria-label="Toggle Menu"
+        type="button"
+        className="form__button form__button--toggle"
+        onClick={handleToggle}
+      >
         <svg
+          aria-hidden="true"
           style={{ display: state ? "block" : "none" }}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -21,6 +27,7 @@ export function Form({ title, children, onSubmit, initialState = false }) {
         </svg>
 
         <svg
+          aria-hidden="true"
           style={{ display: state ? "none" : "block" }}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
