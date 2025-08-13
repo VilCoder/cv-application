@@ -106,7 +106,7 @@ export function Content({
         <ul className="skills__list">
           {skillData.length > 0 ? (
             skillData.map((sk) => (
-              <li key={sk.id} className="skills__item">
+              <li key={sk.skill} className="skills__item">
                 {sk.skill}
               </li>
             ))

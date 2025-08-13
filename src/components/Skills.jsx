@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Form } from "./Form";
-import { initialSkill } from "../constants";
-
-let nextId = 0;
+import { initialSkill } from "../logic/constants";
 
 export function Skills({ skillData, onAdd, onRemove }) {
   const [skill, setSkill] = useState(initialSkill);
@@ -22,7 +20,7 @@ export function Skills({ skillData, onAdd, onRemove }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdd({ ...skill, id: nextId++ });
+    onAdd({ ...skill });
     handleClearField();
   };
 
@@ -51,9 +49,13 @@ export function Skills({ skillData, onAdd, onRemove }) {
           <h3 className="education__list--title">Habilidad Resgistrada</h3>
           <ul className="education__list--ul">
             {skillData.map((sk) => (
-              <li className="education__list--item" key={sk.id}>
+              <li className="education__list--item" key={sk.skill}>
                 <span>{sk.skill}</span>{" "}
-                <button className="item__remove" type="button" onClick={() => onRemove(sk.id)}>
+                <button
+                  className="item__remove"
+                  type="button"
+                  onClick={() => onRemove(sk.id)}
+                >
                   Eliminar
                 </button>
               </li>

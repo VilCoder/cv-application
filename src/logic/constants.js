@@ -7,7 +7,6 @@ export const initialPersonDetails = {
 };
 
 export const initialExperience = {
-  id: "",
   company: "",
   job: "",
   address: "",
@@ -17,7 +16,6 @@ export const initialExperience = {
 };
 
 export const initialEducation = {
-  id: "",
   school: "",
   degree: "",
   address: "",
@@ -25,6 +23,5 @@ export const initialEducation = {
 };
 
 export const initialSkill = {
-  id: "",
   skill: "",
 };

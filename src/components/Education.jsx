@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Form } from "./Form";
-import { initialEducation } from "../constants";
-
-let nextId = 0;
+import { initialEducation } from "../logic/constants";
 
 export function Education({ educationData, onAdd, onRemove }) {
   const [education, setEducation] = useState(initialEducation);
@@ -25,7 +23,7 @@ export function Education({ educationData, onAdd, onRemove }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdd({ ...education, id: nextId++ });
+    onAdd({ ...education });
     handleClearFields();
   };
 
@@ -80,7 +78,7 @@ export function Education({ educationData, onAdd, onRemove }) {
         Degree Date *
         <input
           className="form__input"
-          type="date"
+          type="month"
           id="degreeDate"
           name="degreeDate"
           value={education.degreeDate}
@@ -99,7 +97,7 @@ export function Education({ educationData, onAdd, onRemove }) {
           <h3 className="education__list--title">Educación Registrada</h3>
           <ul className="education__list--ul">
             {educationData.map((ed) => (
-              <li className="education__list--item" key={ed.id}>
+              <li className="education__list--item" key={ed.education}>
                 <span>{ed.school}</span>{" "}
                 <button
                   className="item__remove"

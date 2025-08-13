@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Form } from "./Form";
-import { initialExperience } from "../constants";
-
-let nextId = 0;
+import { initialExperience } from "../logic/constants";
 
 export function Experience({ experienceData, onAdd, onRemove }) {
   const [experience, setExperience] = useState(initialExperience);
@@ -27,7 +25,7 @@ export function Experience({ experienceData, onAdd, onRemove }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdd({ ...experience, id: nextId++ });
+    onAdd({ ...experience });
     handleClearFields();
   };
 
@@ -83,7 +81,7 @@ export function Experience({ experienceData, onAdd, onRemove }) {
         Start Date *
         <input
           className="form__input"
-          type="date"
+          type="month"
           id="startDate"
           name="startDate"
           value={experience.startDate}
@@ -97,7 +95,7 @@ export function Experience({ experienceData, onAdd, onRemove }) {
         End Date *
         <input
           className="form__input"
-          type="date"
+          type="month"
           id="endDate"
           name="endDate"
           value={experience.endDate}
@@ -134,7 +132,7 @@ export function Experience({ experienceData, onAdd, onRemove }) {
           <h3 className="education__list--title">Experiencia Registrada</h3>
           <ul className="education__list--ul">
             {experienceData.map((ex) => (
-              <li className="education__list--item" key={ex.id}>
+              <li className="education__list--item" key={ex.experience}>
                 <span>{ex.company}</span>{" "}
                 <button
                   className="item__remove"

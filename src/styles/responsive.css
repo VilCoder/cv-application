@@ -1,0 +1,71 @@
+@media (min-width: 1024px) {
+  /* =============== GENERAL STYLES =============== */
+  body {
+    overflow: hidden;
+  }
+
+  #root {
+    display: grid;
+    grid-template-columns: 1.3fr 3fr;
+    grid-template-areas: "aside main";
+    gap: 1rem;
+    overflow: hidden;
+  }
+
+  /* =============== ASIDE =============== */
+  .aside__container {
+    grid-area: aside;
+    block-size: calc(100% - 2rem);
+    overflow: auto;
+  }
+
+  .container__form {
+    border-radius: 10px 0 0 10px;
+  }
+
+  .form__button--toggle {
+    inset-block-start: 1rem;
+    inset-inline-end: 1rem;
+  }
+
+  /* =============== MAIN =============== */
+  .main__container {
+    grid-area: main;
+    block-size: calc(100% - 2rem);
+    margin-block-start: 0;
+  }
+
+  .container__content {
+    padding: 2.5rem;
+  }
+
+  .content__title {
+    font-size: 2.5rem;
+  }
+
+  .info__separator {
+    display: inline-block;
+    inline-size: 0.3rem;
+    block-size: 0.3rem;
+    border-radius: 50%;
+    background-color: var(--text-color);
+  }
+
+  .experience__item,
+  .education__item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .experience__title,
+  .education__title,
+  .skills__title {
+    font-size: 1.5em;
+  }
+
+  .experience__location,
+  .education__location {
+    text-align: end;
+  }
+}
