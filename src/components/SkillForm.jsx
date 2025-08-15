@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Form } from "./Form";
+import { Button, Form, TextInput } from "./Form";
 import { initialSkill } from "../logic/constants";
 
-export function Skills({ skillData, onAdd, onRemove }) {
+let nextId = 0;
+
+export function SkillForm({ skillData, onAdd, onRemove }) {
   const [skill, setSkill] = useState(initialSkill);
 
   const handleChange = (e) => {
@@ -20,36 +22,28 @@ export function Skills({ skillData, onAdd, onRemove }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdd({ ...skill });
+    onAdd({ ...skill, id: nextId++ });
     handleClearField();
   };
 
   return (
     <Form title="Skills" onSubmit={handleSubmit} initialState={false}>
-      <label className="form__label" htmlFor="skill">
-        Skill *
-        <input
-          className="form__input"
-          type="text"
-          id="skill"
-          name="skill"
-          value={skill.skill}
-          autoComplete="off"
-          required
-          placeholder="Enter your skill"
-          onChange={handleChange}
-        />
-      </label>
-      <button type="submit" className="form__button form__button--save">
-        Save
-      </button>
+      <TextInput
+        label="Skill"
+        name="skill"
+        value={skill.skill}
+        placeholder="Enter your skill"
+        onChange={handleChange}
+      />
+
+      <Button />
 
       {skillData.length > 0 && (
         <>
           <h3 className="education__list--title">Habilidad Resgistrada</h3>
           <ul className="education__list--ul">
             {skillData.map((sk) => (
-              <li className="education__list--item" key={sk.skill}>
+              <li className="education__list--item" key={sk.id}>
                 <span>{sk.skill}</span>{" "}
                 <button
                   className="item__remove"

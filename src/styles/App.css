@@ -11,7 +11,9 @@ body,
   --primary-color: #fff;
   --text-color: #1b263b;
   --button-color: #56647c;
-  --error-color: #974742;
+  --remove-color: #974742;
+  --valid-color: #8bc34a;
+  --invalid-color: #b92326;
   padding: 1rem;
   overflow: auto;
 }
@@ -213,6 +215,18 @@ svg {
 
 .form__textarea {
   resize: none;
+  field-sizing: content;
+}
+
+.form__input:focus:invalid,
+.form__textarea:focus:invalid {
+  outline: 1px solid var(--invalid-color);
+  box-shadow: 0 0 2px 2px rgb(185 35 38 / 0.25);
+}
+
+.form__input:focus:valid,
+.form__textarea:focus:valid {
+  outline-color: var(--valid-color);
 }
 
 .education__list--title {
@@ -242,8 +256,8 @@ svg {
 }
 
 .item__remove {
-  background-color: var(--error-color);
-  border: 1px solid var(--error-color);
+  background-color: var(--remove-color);
+  border: 1px solid var(--remove-color);
   border-radius: 5px;
   color: var(--primary-color);
   cursor: pointer;
@@ -305,6 +319,7 @@ svg {
 .experience__item,
 .education__item {
   padding: 0 0.5rem;
+  overflow: hidden;
 }
 
 .content__experience,

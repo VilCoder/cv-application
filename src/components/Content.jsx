@@ -1,4 +1,4 @@
-import { dateFormatter } from "../logic/dateFormatter";
+import { formatDateUI } from "../logic/dateFormatter";
 
 export function Content({
   personData,
@@ -8,14 +8,14 @@ export function Content({
 }) {
   return (
     <article className="container__content">
-      <h1 className="content__title">{personData.fullname}</h1>
+      <h1 className="content__title">{personData.fullname || "John Doe"}</h1>
 
       <div className="content__info">
-        <span className="info__location">{personData.address}</span>
+        <span className="info__location">{personData.address || "City, Country"}</span>
         <span role="presentation" className="info__separator"></span>
-        <span className="info__phone">{personData.phone}</span>
+        <span className="info__phone">{personData.phone || "3005178089"}</span>
         <span role="presentation" className="info__separator"></span>
-        <span className="info__email">{personData.email}</span>
+        <span className="info__email">{personData.email || "johndoe@example.com"}</span>
       </div>
 
       <p className="content__description">
@@ -25,27 +25,31 @@ export function Content({
       <section className="content__experience">
         <h2 className="experience__title">EXPERIENCIA PROFESIONAL</h2>
         {experienceData.length > 0 ? (
-          experienceData.map((exp) => (
-            <div key={exp.id} className="experience__item">
-              <p className="experience__job">
-                <span>
-                  <strong>{exp.company}</strong>
-                </span>
-                <span>{exp.job}</span>
-              </p>
-              <p className="experience__location">
-                <span>{exp.address}</span>
-                <span>
-                  {dateFormatter(exp.startDate)}-{dateFormatter(exp.endDate)}
-                </span>
-              </p>
-              <ul className="experience__list">
-                {exp.description.split("\n").map((line, index) => (
-                  <li key={index}>{line}</li>
-                ))}
-              </ul>
-            </div>
-          ))
+          experienceData.map(
+            (exp, index) => (
+              (
+                <div key={index} className="experience__item">
+                  <p className="experience__job">
+                    <span>
+                      <strong>{exp.company}</strong>
+                    </span>
+                    <span>{exp.job}</span>
+                  </p>
+                  <p className="experience__location">
+                    <span>{exp.address__company}</span>
+                    <span>
+                      {formatDateUI(exp.startDate)}-{formatDateUI(exp.endDate)}
+                    </span>
+                  </p>
+                  <ul className="experience__list">
+                    {exp.description.split("\n").map((line, index) => (
+                      <li key={index}>{line}</li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            )
+          )
         ) : (
           <div className="experience__item">
             <p className="experience__job">
@@ -71,8 +75,8 @@ export function Content({
       <section className="content__education">
         <h2 className="education__title">EDUCACIÓN</h2>
         {educationData.length > 0 ? (
-          educationData.map((edu) => (
-            <div key={edu.id} className="education__item">
+          educationData.map((edu, index) => (
+            <div key={index} className="education__item">
               <p className="education__info">
                 <span>
                   <strong>{edu.school}</strong>
@@ -80,8 +84,8 @@ export function Content({
                 <span>{edu.degree}</span>
               </p>
               <p className="education__location">
-                <span>{edu.address}</span>
-                <span>{dateFormatter(edu.degreeDate)}</span>
+                <span>{edu.address__school}</span>
+                <span>{formatDateUI(edu.degreeDate)}</span>
               </p>
             </div>
           ))

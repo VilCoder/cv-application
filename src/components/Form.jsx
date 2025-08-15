@@ -1,5 +1,60 @@
 import { useState } from "react";
 
+export function TextInput({
+  label,
+  name,
+  value,
+  placeholder,
+  onChange,
+  type = "text",
+  autoComplete = "off",
+  maxLength = 40,
+}) {
+  return (
+    <label className="form__label" htmlFor={name}>
+      {label} *
+      <input
+        className="form__input"
+        type={type}
+        id={name}
+        name={name}
+        value={value}
+        maxLength={maxLength}
+        autoComplete={autoComplete}
+        placeholder={placeholder}
+        required
+        onChange={onChange}
+      />
+    </label>
+  );
+}
+
+export function Textarea({ label, name, value, placeholder, onChange }) {
+  return (
+    <label className="form__label" htmlFor={name}>
+      {label} *
+      <textarea
+        className="form__textarea"
+        name={name}
+        id={name}
+        value={value}
+        autoComplete="off"
+        required
+        placeholder={placeholder}
+        onChange={onChange}
+      ></textarea>
+    </label>
+  );
+}
+
+export function Button() {
+  return (
+    <button type="submit" className="form__button form__button--save">
+      Save
+    </button>
+  );
+}
+
 export function Form({ title, children, onSubmit, initialState = false }) {
   const [state, setState] = useState(initialState);
 

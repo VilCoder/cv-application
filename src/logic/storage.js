@@ -1,4 +1,5 @@
 export function saveCvData(person, experience, education, skills) {
+  console.log("Ejecutando saveDataCv")
   const cvData = {
     person,
     experience,

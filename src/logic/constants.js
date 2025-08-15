@@ -1,27 +1,30 @@
 export const initialPersonDetails = {
-  fullname: "John Doe",
-  address: "City, Country",
-  phone: "1234567890",
-  email: "johndoe@example.com",
-  aboutMe: "Lorem ipsum dolor sit amet.",
+  fullname: "",
+  address: "",
+  phone: "",
+  email: "",
+  aboutMe: "",
 };
 
 export const initialExperience = {
+  id: "",
   company: "",
   job: "",
-  address: "",
+  address__company: "",
   startDate: "",
   endDate: "",
   description: "",
 };
 
 export const initialEducation = {
+  id: "",
   school: "",
   degree: "",
-  address: "",
+  address__school: "",
   degreeDate: "",
 };
 
 export const initialSkill = {
+  id: "",
   skill: "",
 };

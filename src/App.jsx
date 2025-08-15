@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import "./styles/App.css";
@@ -6,12 +6,11 @@ import "./styles/responsive.css";
 
 import { initialPersonDetails } from "./logic/constants";
 import { Content } from "./components/Content";
-import { PersonalDetails } from "./components/PersonalDetails";
-import { Experience } from "./components/Experience";
-import { Education } from "./components/Education";
-import { Skills } from "./components/Skills";
+import { PersonForm } from "./components/PersonForm";
+import { ExperienceForm } from "./components/ExperienceForm";
+import { EducationForm } from "./components/EducationForm";
+import { SkillForm } from "./components/SkillForm";
 import { loadCvData, saveCvData } from "./logic/storage";
-import { Navbar } from "./components/Navbar";
 
 function App() {
   const [person, setPerson] = useState(() => {
@@ -34,7 +33,7 @@ function App() {
     return data.skills || [];
   });
 
-  const handleChange = (e) => {
+  const handlePersonChange = (e) => {   
     setPerson({
       ...person,
       [e.target.name]: e.target.value,
@@ -42,15 +41,16 @@ function App() {
   };
 
   const handleAddExperience = ({
+    id,
     company,
     job,
-    address,
+    address__company,
     startDate,
     endDate,
     description,
   }) => {
     setExperienceList([
-      { company, job, address, startDate, endDate, description },
+      { id, company, job, address__company, startDate, endDate, description },
       ...experienceList,
     ]);
   };
@@ -59,9 +59,15 @@ function App() {
     setExperienceList(experienceList.filter((ex) => ex.id !== experienceId));
   };
 
-  const handleAddEducation = ({ school, degree, address, degreeDate }) => {
+  const handleAddEducation = ({
+    id,
+    school,
+    degree,
+    address__school,
+    degreeDate,
+  }) => {
     setEducationList([
-      { school, degree, address, degreeDate },
+      { id, school, degree, address__school, degreeDate },
       ...educationList,
     ]);
   };
@@ -70,15 +76,17 @@ function App() {
     setEducationList(educationList.filter((ed) => ed.id !== educationId));
   };
 
-  const handleAddSkill = async ({ skill }) => {
-    setSkillList([{ skill }, ...skillList]);
+  const handleAddSkill = ({ id, skill }) => {
+    setSkillList([{ id, skill }, ...skillList]);
   };
 
   const handleRemoveSkill = (skillId) => {
     setSkillList(skillList.filter((sk) => sk.id !== skillId));
   };
 
-  saveCvData(person, experienceList, educationList, skillList);
+  useEffect(() => {
+    saveCvData(person, experienceList, educationList, skillList);
+  }, [person, experienceList, educationList, skillList]);
 
   const cvRef = useRef();
   const handleDownloadPDF = async () => {
@@ -123,20 +131,19 @@ function App() {
 
   return (
     <>
-
       <aside className="aside__container">
-        <PersonalDetails handleChange={handleChange} />
-        <Experience
+        <PersonForm handleChange={handlePersonChange} />
+        <ExperienceForm
           experienceData={experienceList}
           onAdd={handleAddExperience}
           onRemove={handleRemoveExperience}
         />
-        <Education
+        <EducationForm
           educationData={educationList}
           onAdd={handleAddEducation}
           onRemove={handleRemoveEducation}
         />
-        <Skills
+        <SkillForm
           skillData={skillList}
           onAdd={handleAddSkill}
           onRemove={handleRemoveSkill}
