@@ -50,7 +50,7 @@ export function Textarea({ label, name, value, placeholder, onChange }) {
 export function Button() {
   return (
     <button type="submit" className="form__button form__button--save">
-      Save
+      Guardar
     </button>
   );
 }

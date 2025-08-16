@@ -4,7 +4,7 @@ export function PersonForm({ handleChange }) {
   return (
     <Form title="Información Personal" initialState={true}>
       <TextInput
-        label="Full Name"
+        label="Nombre Completo"
         name="fullname"
         placeholder="John Doe..."
         onChange={handleChange}
@@ -12,7 +12,7 @@ export function PersonForm({ handleChange }) {
       />
 
       <TextInput
-        label="Location"
+        label="Ubicación"
         name="address"
         placeholder="City, Country"
         onChange={handleChange}
@@ -20,7 +20,7 @@ export function PersonForm({ handleChange }) {
       />
 
       <TextInput
-        label="Phone"
+        label="Teléfono"
         name="phone"
         placeholder="+57 234567890"
         onChange={handleChange}
@@ -30,7 +30,7 @@ export function PersonForm({ handleChange }) {
       />
 
       <TextInput
-        label="Email"
+        label="Correo Eléctronico"
         name="email"
         placeholder="johndoe@example.com"
         onChange={handleChange}
@@ -39,7 +39,7 @@ export function PersonForm({ handleChange }) {
       />
 
       <Textarea
-        label="About Me"
+        label="Perfil"
         name="aboutMe"
         autoComplete="off"
         rows={3}

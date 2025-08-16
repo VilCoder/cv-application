@@ -32,7 +32,7 @@ export function EducationForm({ educationData, onAdd, onRemove }) {
   return (
     <Form title="Educación" onSubmit={handleSubmit}>
       <TextInput
-        label="School Name"
+        label="Nombre de la Escuela"
         name="school"
         value={education.school}
         autoComplete="organization"
@@ -41,7 +41,17 @@ export function EducationForm({ educationData, onAdd, onRemove }) {
       />
 
       <TextInput
-        label="Degree"
+        label="Ubicación"
+        name="address__school"
+        value={education.address__school}
+        placeholder="City, Country"
+        onChange={handleChange}
+        autoComplete="street-address"
+        maxLength={60}
+      />
+      
+      <TextInput
+        label="Grado"
         name="degree"
         value={education.degree}
         placeholder="Desarrollo de Software y de Aplicaciones Web"
@@ -50,17 +60,7 @@ export function EducationForm({ educationData, onAdd, onRemove }) {
       />
 
       <TextInput
-        label="Location"
-        name="address__school"
-        value={education.address__school}
-        placeholder="City, Country"
-        onChange={handleChange}
-        autoComplete="street-address"
-        maxLength={60}
-      />
-
-      <TextInput
-        label="Degree Date"
+        label="Fecha de grado"
         name="degreeDate"
         value={education.degreeDate}
         onChange={handleChange}

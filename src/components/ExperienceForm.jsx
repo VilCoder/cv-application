@@ -34,7 +34,7 @@ export function ExperienceForm({ experienceData, onAdd, onRemove }) {
   return (
     <Form title="Experiencia Profesional" onSubmit={handleSubmit}>
       <TextInput
-        label="Company Name"
+        label="Nombre de la empresa"
         name="company"
         value={experience.company}
         placeholder="MGB TECHNOLOGY S.A.S"
@@ -44,7 +44,17 @@ export function ExperienceForm({ experienceData, onAdd, onRemove }) {
       />
 
       <TextInput
-        label="Job Title"
+        label="Ubicación"
+        name="address__company"
+        value={experience.address__company}
+        placeholder="City, Country"
+        onChange={handleChange}
+        autoComplete="street-address"
+        maxLength={60}
+      />
+      
+      <TextInput
+        label="Título del puesto"
         name="job"
         value={experience.job}
         placeholder="Software Developer"
@@ -54,17 +64,7 @@ export function ExperienceForm({ experienceData, onAdd, onRemove }) {
       />
 
       <TextInput
-        label="Location"
-        name="address__company"
-        value={experience.address__company}
-        placeholder="City, Country"
-        onChange={handleChange}
-        autoComplete="street-address"
-        maxLength={60}
-      />
-
-      <TextInput
-        label="Start Date"
+        label="Fecha Inicio"
         name="startDate"
         value={experience.startDate}
         onChange={handleChange}
@@ -72,7 +72,7 @@ export function ExperienceForm({ experienceData, onAdd, onRemove }) {
       />
 
       <TextInput
-        label="End Date"
+        label="Fecha Fin"
         name="endDate"
         value={experience.endDate}
         onChange={handleChange}
@@ -80,7 +80,7 @@ export function ExperienceForm({ experienceData, onAdd, onRemove }) {
       />
 
       <Textarea
-        label="Description"
+        label="Responsabilidades"
         name="description"
         value={experience.description}
         placeholder="Describe your professional experience..."

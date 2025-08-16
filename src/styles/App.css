@@ -179,7 +179,7 @@ svg {
 
 .form__button--save {
   inline-size: 100%;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-block-start: 1rem;
   padding-block: 0.5rem;
   background-color: var(--button-color);
@@ -269,13 +269,13 @@ svg {
 }
 
 .aside__button {
+  font-size: 1rem;
   padding: 0.5rem;
   background-color: var(--button-color);
   border: none;
   border-radius: 7px;
   color: var(--primary-color);
   cursor: pointer;
-  /* font-size: 0.7rem; */
 }
 
 /* =============== MAIN =============== */
